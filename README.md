@@ -8,14 +8,11 @@ Implemented in Convergent evolution within and across patients reveals mechanism
 
 # Usage
 Package can be installed by
-'''
-pip install -e .
-'''
+```pip install -e .```
 
 Or directly as 
-'''
-pip install git+https://github.com/getzlab/CloneSig.git
-'''
+``` pip install git+https://github.com/getzlab/CloneSig.git```
+
 
 # Inputs
 
