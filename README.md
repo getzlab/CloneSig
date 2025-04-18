@@ -1,6 +1,6 @@
 # CloneSig
 
-CloneSig for identification of genes with convergent mutations
+CloneSig for identification of genes with convergent mutations across multiple cancer clones.
 
 Implemented in Convergent evolution within and across patients reveals mechanisms of cancer drug resistance.
 
