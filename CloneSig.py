@@ -228,7 +228,7 @@ class CloneSigAnalyzer:
         print(f"Processing chunk {chunk_id}")
         chunk_matrices = []
         
-        # Do a longer burn-in at the start of chunk
+        # Burn-in at the start of chunk
         CG_current = curveball.curve_ball(self.CG, self.hp, 10000)
         hp_current = curveball.find_presences(CG_current)
         
@@ -249,10 +249,6 @@ class CloneSigAnalyzer:
     def generate_permutations(self):
         """Generate all permutations in parallel"""
         os.makedirs(self.permutation_dir, exist_ok=True)
-        
-        # Initial burn-in
-        CG_burnin = curveball.curve_ball(self.CG, self.hp, 10000)
-        hp_burnin = curveball.find_presences(CG_burnin)
         
         chunk_size = 1000
         n_chunks = self.n_perm // chunk_size
@@ -296,4 +292,4 @@ class CloneSigAnalyzer:
         if step == 'all' or step == 'genes':
             gene_results = self.process_genes_parallel()
             Cb_all_genes_df = pd.DataFrame(gene_results)
-            Cb_all_genes_df.to_csv('Cb_onesided_subclones_040325_100k.txt', sep='\t', index=False) 
+            Cb_all_genes_df.to_csv('clonesig_results.txt', sep='\t', index=False) 
