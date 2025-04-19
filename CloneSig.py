@@ -11,25 +11,25 @@ sys.path.append("CurveBall/cbsig")
 import curveball
 
 class CloneSigAnalyzer:
-    def __init__(self, input_maf, gene_list_txt):
+    def __init__(self, input_maf, gene_list_txt, n_perm=100000):
         """
         Initialize the CloneigAnalyzer with input data
         
         Args:
             input_maf (str): Path to the MAF file
             gene_list_txt (str): Path to the gene list file
+            n_perm (int): Number of permutations to perform (default: 100000)
         """
         self.input_maf = input_maf
         self.gene_list = pd.read_csv(gene_list_txt, sep='\t')['genes'].tolist()
         self.maf = pd.read_csv(input_maf, sep='\t')
         self.maf = self.maf.sort_values(by=['Tumor_Sample_Barcode']).reset_index(drop=True)
-        self.subclones_sig_genes = pd.read_csv('sig_genes_subclones.txt', sep='\t')
         
         # Setup basic matrices and indices
         self._setup_matrices()
         
         # Default parameters
-        self.n_perm = 100000
+        self.n_perm = n_perm
         self.permutation_dir = "permutation_matrices"
         self.batch_size = 5
 
@@ -175,9 +175,8 @@ class CloneSigAnalyzer:
         # Calculate observed distribution
         gene_Pm = self.calculate_distributions(gene)
         
-        # Get gene indices
-        subset_idx = (self.subclones_sig_genes['gene'] == gene)
-        subset_idx_mat = [self.g2gidx[x] for x in self.subclones_sig_genes.loc[subset_idx, "gene"]]
+        # Get gene index
+        subset_idx_mat = [self.g2gidx[gene]]
         
         # Calculate observed score
         mut_clone_indices_obs = self.compute_mut_clone_indices(self.c2pat, self.CG[:, subset_idx_mat])
