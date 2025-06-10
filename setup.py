@@ -1,4 +1,5 @@
 from setuptools import setup, find_packages
+import os
 
 setup(
     name="CloneSig",
@@ -9,10 +10,6 @@ setup(
         "numpy>=1.19.0",
         "scipy>=1.5.0",
         "numpy-groupies>=0.9.0",
-        "git+https://github.com/getzlab/CurveBall.git#egg=curveball",
-    ],
-    dependency_links=[
-        "git+https://github.com/getzlab/CurveBall.git#egg=curveball",
     ],
     python_requires=">=3.6",
     author="Liz Martin, Ignaty Leshchiner, Gad Getz",
@@ -25,4 +22,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
     ],
+    extras_require={
+        'curveball': ['curveball @ git+https://github.com/getzlab/CurveBall.git'],
+    },
 ) 
