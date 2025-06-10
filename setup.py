@@ -23,6 +23,6 @@ setup(
         "Operating System :: OS Independent",
     ],
     extras_require={
-        'curveball': ['curveball @ git+https://github.com/getzlab/CurveBall.git'],
+        'curveball': ['cbsig @ git+https://github.com/getzlab/CurveBall.git'],
     },
 ) 
