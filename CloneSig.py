@@ -7,8 +7,7 @@ import scipy.stats as stat
 import scipy.sparse as sp
 import numpy_groupies as npg
 import multiprocessing
-sys.path.append("CurveBall/cbsig")
-import curveball
+import cbsig.curveball as curveball
 
 class CloneSigAnalyzer:
     def __init__(self, input_maf, gene_list_txt, n_perm=100000):
